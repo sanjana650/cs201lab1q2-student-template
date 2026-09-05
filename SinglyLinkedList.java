@@ -66,12 +66,14 @@ public class SinglyLinkedList<E> {
     }
 
     // Write your codes below
+    @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
         Node<E> walk = head;
         while (walk != null) {
-            System.out.println(walk.getElement());
+            // System.out.println(walk.getElement());
             result.append(walk.getElement());
+            walk = walk.getNext();
         }
         return result.toString();
     }
@@ -96,20 +98,54 @@ public class SinglyLinkedList<E> {
         return walk.getElement();
     }
 
+    // public void reverse() {
+
+    //     Node<E> curr = head;
+    //     Node<E> prev = curr;
+    //     Node<E> temp_next = curr.getNext();
+
+    //     tail = curr;
+    //     curr.setNext(temp_next);
+
+    //     while (curr != null) {
+    //         temp_next = curr.getNext();
+    //         curr.setNext(prev);
+    //         prev = curr;
+    //         curr = temp_next;
+    //     }
+    //     head = prev;
+    // }
+
     public void reverse() {
 
         Node<E> curr = head;
         Node<E> prev = null;
+        tail = curr;
 
         while (curr != null) {
-            if (prev == null) {
-                tail = curr;
-            }
             Node<E> temp_next = curr.getNext();
             curr.setNext(prev);
             prev = curr;
             curr = temp_next;
         }
-        head = curr;
+        head = prev;
+    }
+
+    public static void main(String[] args) {
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
+        list.addLast(5);
+
+        System.out.println("Original: " + list.toString());
+
+        list.reverse();
+        System.out.println("Reversed: " + list.toString());
+
+        System.out.println("First after reverse: " + list.first());
+        // System.out.println("Last after reverse: " + list.last());
+        // System.out.println("Size: " + list.size());
     }
 }
