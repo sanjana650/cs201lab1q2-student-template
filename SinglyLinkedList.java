@@ -86,6 +86,7 @@ public class SinglyLinkedList<E> {
 
         Node<E> walk = head;
         Node<E> prev = null;
+        Node<E> second_prev = null;
 
         // if (head == walk && tail == walk) {
         //     System.out.println("1 ELE LIST");
@@ -96,10 +97,13 @@ public class SinglyLinkedList<E> {
         // }
 
         while (walk != null) {
+            if(walk!=head){
+                second_prev=prev;
+            }
             prev=walk;
             walk = walk.getNext();
         }
-        tail = prev;
+        tail = second_prev;
         size--;
 
         return prev.getElement();
