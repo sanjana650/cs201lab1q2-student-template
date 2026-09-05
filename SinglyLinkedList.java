@@ -88,14 +88,6 @@ public class SinglyLinkedList<E> {
         Node<E> prev = null;
         Node<E> second_prev = null;
 
-        // if (head == walk && tail == walk) {
-        //     System.out.println("1 ELE LIST");
-        //     head = null;
-        //     tail = null;
-        //     size--;
-        //     return walk.getElement();
-        // }
-
         while (walk != null) {
             if(walk!=head){
                 second_prev=prev;
@@ -103,9 +95,15 @@ public class SinglyLinkedList<E> {
             prev=walk;
             walk = walk.getNext();
         }
-        tail = second_prev;
         size--;
+        tail = second_prev;
 
+        if(tail==null){
+            head=null;
+            return prev.getElement();
+        }
+
+        second_prev.setNext(null);
         return prev.getElement();
     }
 
@@ -162,6 +160,9 @@ public class SinglyLinkedList<E> {
     list2.addLast(1);
     list2.addLast(2);
     list2.addLast(3);
+    list2.addLast(4);
+    list2.addLast(5);
+    list2.addLast(6);
     System.out.println("Before: " + list2.toString() + " | size=" +
     list2.size());
     Integer removed2 = list2.removeLast();
