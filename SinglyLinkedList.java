@@ -100,27 +100,36 @@ public class SinglyLinkedList<E> {
 
     // public void reverse() {
 
-    //     Node<E> curr = head;
-    //     Node<E> prev = curr;
-    //     Node<E> temp_next = curr.getNext();
+    // Node<E> curr = head;
+    // Node<E> prev = curr;
+    // Node<E> temp_next = curr.getNext();
 
-    //     tail = curr;
-    //     curr.setNext(temp_next);
+    // tail = curr;
+    // curr.setNext(temp_next);
 
-    //     while (curr != null) {
-    //         temp_next = curr.getNext();
-    //         curr.setNext(prev);
-    //         prev = curr;
-    //         curr = temp_next;
-    //     }
-    //     head = prev;
+    // while (curr != null) {
+    // temp_next = curr.getNext();
+    // curr.setNext(prev);
+    // prev = curr;
+    // curr = temp_next;
+    // }
+    // head = prev;
     // }
 
     public void reverse() {
+        if (head == null) {
+            return;
+        }
 
         Node<E> curr = head;
         Node<E> prev = null;
         tail = curr;
+
+        if (tail == curr) {
+            head = null;
+            tail = null;
+            return;
+        }
 
         while (curr != null) {
             Node<E> temp_next = curr.getNext();
@@ -131,5 +140,26 @@ public class SinglyLinkedList<E> {
         head = prev;
     }
 
-    
+    // public static void main(String[] args) {
+    //     // Test 1: removeLast - single element
+    //     System.out.println("=== Single element ===");
+    //     SinglyLinkedList<Integer> list1 = new SinglyLinkedList<>();
+    //     list1.addLast(1);
+    //     System.out.println("Before: " + list1.toString() + " | size=" + list1.size());
+    //     list1.removeLast();
+    //     System.out.println("After: " + list1.toString() + " | size=" + list1.size());
+    //     System.out.println("isEmpty: " + list1.isEmpty());
+    //     System.out.println();
+
+    //     // Test 2: removeLast - multiple elements
+    //     System.out.println("=== Multiple elements ===");
+    //     SinglyLinkedList<Integer> list2 = new SinglyLinkedList<>();
+    //     list2.addLast(1);
+    //     list2.addLast(2);
+    //     list2.addLast(3);
+    //     System.out.println("Before: " + list2.toString() + " | size=" + list2.size());
+    //     list2.removeLast();
+    //     System.out.println("After: " + list2.toString() + " | size=" + list2.size());
+    //     System.out.println("last(): " + list2.last());
+    // }
 }
