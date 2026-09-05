@@ -83,8 +83,15 @@ public class SinglyLinkedList<E> {
         if (head == null) {
             return null;
         }
+        
 
         Node<E> walk = head;
+
+        if(head==tail){
+            head=null;
+            tail=null;
+            return walk.getElement();
+        }
         while (walk != null) {
             Node<E> temp = walk.getNext();
             if (temp.getNext() == null) {
@@ -98,23 +105,6 @@ public class SinglyLinkedList<E> {
         return walk.getElement();
     }
 
-    // public void reverse() {
-
-    // Node<E> curr = head;
-    // Node<E> prev = curr;
-    // Node<E> temp_next = curr.getNext();
-
-    // tail = curr;
-    // curr.setNext(temp_next);
-
-    // while (curr != null) {
-    // temp_next = curr.getNext();
-    // curr.setNext(prev);
-    // prev = curr;
-    // curr = temp_next;
-    // }
-    // head = prev;
-    // }
 
     public void reverse() {
         if (head == null) {
@@ -123,14 +113,8 @@ public class SinglyLinkedList<E> {
 
         Node<E> curr = head;
         Node<E> prev = null;
+
         tail = curr;
-
-        if (tail == curr) {
-            head = null;
-            tail = null;
-            return;
-        }
-
         while (curr != null) {
             Node<E> temp_next = curr.getNext();
             curr.setNext(prev);
@@ -141,12 +125,29 @@ public class SinglyLinkedList<E> {
     }
 
     // public static void main(String[] args) {
-    //     // Test 1: removeLast - single element
+    //     SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+    //     list.addLast(1);
+    //     list.addLast(2);
+    //     list.addLast(3);
+    //     list.addLast(4);
+    //     list.addLast(5);
+
+    //     System.out.println("Original: " + list.toString());
+
+    //     list.reverse();
+    //     System.out.println("Reversed: " + list.toString());
+
+    //     System.out.println("First after reverse: " + list.first());
+    //     System.out.println("Last after reverse: " + list.last());
+    //     System.out.println("Size: " + list.size());
+
+    //     //tets
     //     System.out.println("=== Single element ===");
     //     SinglyLinkedList<Integer> list1 = new SinglyLinkedList<>();
     //     list1.addLast(1);
     //     System.out.println("Before: " + list1.toString() + " | size=" + list1.size());
-    //     list1.removeLast();
+    //     Integer removed1 = list1.removeLast();
+    //     System.out.println("Removed: " + removed1);
     //     System.out.println("After: " + list1.toString() + " | size=" + list1.size());
     //     System.out.println("isEmpty: " + list1.isEmpty());
     //     System.out.println();
@@ -158,7 +159,8 @@ public class SinglyLinkedList<E> {
     //     list2.addLast(2);
     //     list2.addLast(3);
     //     System.out.println("Before: " + list2.toString() + " | size=" + list2.size());
-    //     list2.removeLast();
+    //     Integer removed2 = list2.removeLast();
+    //     System.out.println("Removed: " + removed2);
     //     System.out.println("After: " + list2.toString() + " | size=" + list2.size());
     //     System.out.println("last(): " + list2.last());
     // }
